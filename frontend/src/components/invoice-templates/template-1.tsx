@@ -212,21 +212,7 @@ const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({ invoiceData }) => {
           </div>
         </div>
 
-        {/* Payment & Bank Details */}
-        <div className="grid grid-cols-2 gap-4 mt-8">
-          <div>
-            <h3 className="font-semibold mb-2">Payment Terms</h3>
-            <p>Net 30 Days</p>
-            <p>Bank Transfer</p>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-2">Bank Details</h3>
-            <p>Bank Name: Your Bank</p>
-            <p>Account Name: Your Company</p>
-            <p>Account Number: XXXX-XXXX-XXXX-1234</p>
-            <p>SWIFT Code: XXXXXXXX</p>
-          </div>
-        </div>
+       
       </div>
     </div>
   );
