@@ -1,100 +1,24 @@
-import { Outlet, Link } from "react-router";
-import { useUser } from "../contexts/UserContext";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { LogOut } from "lucide-react";
+import { Link, Outlet, useLocation } from "react-router-dom"
+import Header from "./Header"
 
 export default function Navbar() {
-  const { user, logout } = useUser();
-
-  return (
-    <div className="flex min-h-screen">
-      <nav className="w-64 border-r bg-background flex flex-col">
-        <div className="flex h-16 items-center border-b px-4">
-          <h1 className="text-lg font-semibold">Invoice Invementary</h1>
+    const location = useLocation()
+    return (
+        <div className="flex">
+            <div className="fixed inset-y-0 left-0 w-52 border-r bg-zinc-50">
+                <Header />
+                <nav className="flex flex-col text-md pl-4 pt-8 gap-6 b">
+                    <Link className={`${location.pathname === '/dashboard' ? 'font-semibold underline' : 'text-neutral-500'}`} to={"/"}>Dashboard</Link>
+                    <Link className={`${location.pathname === '/inventory' ? 'font-semibold ' : 'text-neutral-500'}`} to={"/inventory"}>Inventory</Link>
+                    <Link className={`${location.pathname === '/billing' ? 'font-semibold' : 'text-neutral-500'}`} to={"/billing"}>Billing History</Link>
+                    <Link className={`${location.pathname === '/invoice' ? 'font-semibold' : 'text-neutral-500'}`} to={"/invoice"}>Create Invoice</Link>
+                </nav>
+            </div>
+            <div className="ml-56 flex-1 min-h-screen">
+                <div className="m-4 pt-12 overflow-y-auto">
+                    <Outlet />
+                </div>
+            </div>
         </div>
-        <div className=" flex flex-col space-y-1 p-4">
-          <Link
-            to="/"
-            className="flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-          >
-            Dashboard
-          </Link>
-          <Link
-            to="/inventory"
-            className="flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-          >
-            Inventory
-          </Link>
-          <Link
-            to="/invoice"
-            className="flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-          >
-            Invoice
-          </Link>
-          <Link
-            to="/billing"
-            className="flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-          >
-            Billing History
-          </Link>
-        </div>
-        <div className="border-t p-4 mt-auto ">
-          {user && (
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button variant="ghost" className="w-full justify-start gap-2">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage
-                      src={`https://avatar.vercel.sh/${user.email}`}
-                      alt={user.name}
-                    />
-                    <AvatarFallback>{user.name[0]}</AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col items-start">
-                    <span className="text-sm font-medium">{user.name}</span>
-                    <span className="text-xs text-muted-foreground">
-                      {user.email}
-                    </span>
-                  </div>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 ml-8" align="end">
-                <DropdownMenuLabel className="font-normal">
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">
-                      {user.name}
-                    </p>
-                    <p className="text-xs leading-none text-muted-foreground">
-                      {user.email}
-                    </p>
-                  </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={logout}
-                  className="text-red-600 focus:text-red-600"
-                >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Sign out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
-        </div>
-      </nav>
-      <main className="flex-1 p-6">
-        <Outlet />
-      </main>
-    </div>
-  );
+    )
 }

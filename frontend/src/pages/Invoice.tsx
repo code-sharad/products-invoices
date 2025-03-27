@@ -77,6 +77,7 @@ function Invoice() {
     price: 0,
     category: "",
   });
+  // @ts-ignore
   const [inventoryItems, setInventoryItems] = useState(initialProducts);
   const [invoiceItems, setInvoiceItems] = useState<
     {

@@ -1,5 +1,4 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { SquarePen, Trash2 } from "lucide-react";
 
 const categorys = [
     {

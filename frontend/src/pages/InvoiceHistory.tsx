@@ -17,21 +17,10 @@ import {
   ChevronRight,
   Download,
   Eye,
-  FileDown,
   Search,
 } from "lucide-react";
 
 import { format, parseISO } from "date-fns";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import InvoiceTemplate from "@/components/invoice-templates/template-1";
-import ModernInvoiceTemplate from "@/components/invoice-templates/template-Modern";
-import PremiumMinimalInvoice from "@/components/invoice-templates/template-minimal";
 
 // Define invoice type
 type Invoice = {
@@ -322,11 +311,14 @@ const sampleInvoices: Invoice[] = [
 ];
 
 export default function BillingHistoryPage() {
+  // @ts-ignore
   const [invoices, setInvoices] = useState<Invoice[]>(sampleInvoices);
   const [searchQuery, setSearchQuery] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
+  // @ts-ignore
   const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
+  // @ts-ignore
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const itemsPerPage = 10;
 

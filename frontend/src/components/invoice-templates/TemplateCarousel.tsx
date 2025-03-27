@@ -24,6 +24,7 @@ const TemplateCarousel: React.FC<TemplateCarouselProps> = ({
   templates,
   selectedTemplate,
   onSelectTemplate,
+  // @ts-ignore
   invoiceData,
 }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -89,6 +90,7 @@ const TemplateCarousel: React.FC<TemplateCarouselProps> = ({
           }}
         >
           {templates.map((template) => {
+            // @ts-ignore
             const TemplateComponent = getTemplateComponent(template.id);
             return (
               <div
@@ -97,11 +99,10 @@ const TemplateCarousel: React.FC<TemplateCarouselProps> = ({
                 onClick={() => onSelectTemplate(template.id)}
               >
                 <Card
-                  className={`h-72 cursor-pointer transition-all overflow-hidden group relative ${
-                    selectedTemplate === template.id
+                  className={`h-72 cursor-pointer transition-all overflow-hidden group relative ${selectedTemplate === template.id
                       ? "border-2 border-primary shadow-lg"
                       : "hover:border-primary/50 hover:shadow-md"
-                  }`}
+                    }`}
                 >
                   <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
                     <img src={template.preview} />

@@ -17,7 +17,7 @@ interface DatePickerProps {
 }
 
 export function DatePicker({ value, onChange }: DatePickerProps) {
-  const [date, setDate] = React.useState<Date>(
+  const [date, setDate] = React.useState<Date | undefined>(
     value ? new Date(value) : undefined
   );
 

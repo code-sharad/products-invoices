@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas-pro";
-import { Download, Printer } from "lucide-react";
+import { Download } from "lucide-react";
 
 interface InvoiceItem {
   id: string;
@@ -68,6 +68,7 @@ const ModernInvoiceTemplate: React.FC<ModernInvoiceTemplateProps> = ({
       const imgProps = pdf.getImageProperties(imgData);
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      // @ts-ignore
       const pageHeight = pdf.internal.pageSize.getHeight();
 
       // Add the image to the PDF

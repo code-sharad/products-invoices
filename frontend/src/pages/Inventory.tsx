@@ -17,7 +17,6 @@ import {
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Edit, Plus, Trash2 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import CategoryTable from "@/components/inventory/CategoryTable"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 // Define product type

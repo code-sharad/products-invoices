@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, {  useRef } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas-pro";
 import { Download, Printer } from "lucide-react";
@@ -54,6 +54,10 @@ const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({ invoiceData }) => {
   // PDF Download Function
   const downloadPDF = async () => {
     const input = invoiceRef.current;
+    if (!input) {
+      console.error("Invoice reference is null");
+      return;
+    }
 
     try {
       const canvas = await html2canvas(input, {
