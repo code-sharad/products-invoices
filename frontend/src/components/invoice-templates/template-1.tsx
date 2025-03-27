@@ -1,7 +1,7 @@
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas-pro";
-import { Download, Printer } from "lucide-react";
+import { Download } from "lucide-react";
 
 interface InvoiceItem {
   id: string;
@@ -100,17 +100,13 @@ const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({ invoiceData }) => {
     <div className="bg-white p-8 max-w-4xl mx-auto">
       {/* Action Buttons */}
       <div className="flex justify-end space-x-4 mb-6">
-        <button
-          onClick={() => window.print()}
-          className="flex items-center bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded"
-        >
-          <Printer className="mr-2" size={18} /> Print
-        </button>
+
+
         <button
           onClick={downloadPDF}
-          className="flex items-center bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded"
+          className="flex items-center px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
         >
-          <Download className="mr-2" size={18} /> Download PDF
+          <Download className="mr-2" size={16} /> Download PDF
         </button>
       </div>
 

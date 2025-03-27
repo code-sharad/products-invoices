@@ -364,7 +364,7 @@ export default function BillingHistoryPage() {
   return (
     <div className="flex-1 p-4 pt-6 md:p-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <h2 className="text-3xl font-bold tracking-tight">Billing History</h2>
+        <h2 className="text-3xl font-serif font-bold tracking-tight">Billing History</h2>
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />

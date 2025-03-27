@@ -61,20 +61,37 @@ const ModernInvoiceTemplate: React.FC<ModernInvoiceTemplateProps> = ({
     try {
       const canvas = await html2canvas(input, {
         scale: 2,
+        logging: false,
         useCORS: true,
+        allowTaint: true,
+        foreignObjectRendering: false,
+        scrollY: -window.scrollY,
+        windowWidth: input.scrollWidth,
+        windowHeight: input.scrollHeight
       });
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4", true);
-      const imgProps = pdf.getImageProperties(imgData);
+
+      // Wait for canvas to be fully rendered
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const imgData = canvas.toDataURL('image/png', 1.0);
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+        compress: true
+      });
+
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      // @ts-ignore
-      const pageHeight = pdf.internal.pageSize.getHeight();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
 
-      // Add the image to the PDF
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      const imgX = (pdfWidth - imgWidth * ratio) / 2;
+      const imgY = 0;
 
-      pdf.save("Invoice.pdf");
+      pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio, '', 'FAST');
+      pdf.save(`Invoice-${invoiceData.invoiceNumber}.pdf`);
     } catch (error) {
       console.error("PDF generation error:", error);
       alert("Failed to generate PDF. Please try again.");
@@ -86,11 +103,11 @@ const ModernInvoiceTemplate: React.FC<ModernInvoiceTemplateProps> = ({
       {/* Action Buttons */}
       <div className="flex justify-end space-x-4 mb-8 print:hidden">
         <button
-          onClick={downloadPDF}
-          className="flex items-center bg-gray-200 text-gray-800 hover:bg-gray-300 px-4 py-2 rounded"
-        >
-          <Download className="mr-2" size={18} /> Download PDF
-        </button>
+                  onClick={downloadPDF}
+                  className="flex items-center px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+                >
+                  <Download className="mr-2" size={16} /> Download PDF
+                </button>
       </div>
 
       {/* Invoice Container */}

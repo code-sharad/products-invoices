@@ -55,10 +55,10 @@ const TemplateCarousel: React.FC<TemplateCarouselProps> = ({
   };
 
   return (
-    <div className="w-full py-4">
+    <div className="w-full py-4 ">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold">Select Template</h3>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 ">
           <span className="text-sm text-muted-foreground">
             {currentIndex + 1} / {templates.length / 3}
           </span>
@@ -82,7 +82,7 @@ const TemplateCarousel: React.FC<TemplateCarouselProps> = ({
           </div>
         </div>
       </div>
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden ">
         <div
           className="flex transition-transform duration-300 ease-in-out gap-12"
           style={{
@@ -95,13 +95,13 @@ const TemplateCarousel: React.FC<TemplateCarouselProps> = ({
             return (
               <div
                 key={template.id}
-                className="w-72 flex-shrink-0 px-2"
+                className="w-72 flex-shrink-0 px-2 "
                 onClick={() => onSelectTemplate(template.id)}
               >
                 <Card
                   className={`h-72 cursor-pointer transition-all overflow-hidden group relative ${selectedTemplate === template.id
-                      ? "border-2 border-primary shadow-lg"
-                      : "hover:border-primary/50 hover:shadow-md"
+                    ? "border-2 border-primary shadow-lg"
+                    : "hover:border-primary/50 hover:shadow-md"
                     }`}
                 >
                   <div className="absolute inset-0 flex items-center justify-center bg-gray-50">

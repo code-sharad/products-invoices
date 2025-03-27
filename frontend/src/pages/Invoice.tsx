@@ -156,8 +156,8 @@ function Invoice() {
   };
 
   return (
-    <div className="container">
-      <h1 className="text-3xl mt-12 mb-8 font-semibold">Create Invoice</h1>
+    <div className="container p-4 pt-6 md:p-8">
+      <h1 className="text-3xl mb-8 font-serif font-bold tracking-tight">Create Invoice</h1>
       <div className="flex flex-col lg:flex-row gap-4">
         <Card className="flex-1">
           <CardHeader>
@@ -452,7 +452,7 @@ function Invoice() {
       </div>
 
       {/* Template Selection */}
-      <Card className="mt-8">
+      <Card className="mt-8 ">
         <CardContent>
           <TemplateCarousel
             templates={templates}
