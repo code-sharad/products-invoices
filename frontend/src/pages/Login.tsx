@@ -22,7 +22,7 @@ export default function Login() {
       // For now, we'll simulate a successful login
       const mockUser = {
         id: "1",
-        name: "John Doe",
+        name: "Sharad Bhadait",
         email: email,
         role: "admin",
       };
