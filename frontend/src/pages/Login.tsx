@@ -18,7 +18,7 @@ export default function Login() {
     setError("");
 
     try {
-      // Here you would typically make an API call to your backend
+      // Here you would typically make an API call to your backends
       // For now, we'll simulate a successful login
       const mockUser = {
         id: "1",
